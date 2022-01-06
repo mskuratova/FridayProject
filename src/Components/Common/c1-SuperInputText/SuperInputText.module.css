@@ -1,0 +1,27 @@
+.superInput {
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+input.superInput:focus {
+    outline: none;
+}
+.errorInput {
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgba(200,50,30,0.3);
+    outline: none;
+}
+
+.error {
+    color: red;
+}

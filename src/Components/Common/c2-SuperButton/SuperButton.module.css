@@ -1,0 +1,15 @@
+.default {
+    background-color: rgba(218, 218, 218, 0.71);
+    border: hidden;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+.red {
+    background-color: rgba(255, 0, 0, 0.4);
+    border: hidden;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 3px;
+}

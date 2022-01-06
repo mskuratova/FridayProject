@@ -1,0 +1,102 @@
+.SuperSelect {
+    min-height: 25px;
+    min-width: 50px;
+    width: fit-content;
+    max-width: 400px;
+    height: fit-content;
+    max-height: 200px;
+    display: inline-flex;
+    align-items: center;
+    border: 2px #cccccc solid;
+    border-radius: 5px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.SuperSelect span {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+    font-family: "Arial Black", sans-serif;
+}
+
+.SuperSelect img {
+    transition: 0.25s;
+    height: 75%;
+    transform: rotate(180deg);
+}
+
+.SuperSelectItems {
+    background-color: white;
+    box-sizing: border-box;
+    transition: 0.25s;
+    margin-top: 2px;
+    min-height: 25px;
+    min-width: 50px;
+    width: fit-content;
+    max-width: 400px;
+    height: fit-content;
+    max-height: 200px;
+    align-items: center;
+    vertical-align: top;
+    text-align: center;
+    font-size: 15px;
+    font-family: "Arial Black", sans-serif;
+    margin-left: 5px;
+    transform: scale(0);
+    position: absolute;
+
+}
+
+.SuperSelectItem {
+    background-color: white;
+    width: 100%;
+    border-top: 2px #cccccc solid;
+    border-right: 2px #cccccc solid;
+    border-left: 2px #cccccc solid;
+    padding: 0;
+    display: block;
+    outline: none;
+}
+
+.SuperSelectItem:first-child {
+    border-radius: 5px 5px 0 0;
+    padding: 0;
+}
+
+.SuperSelectItem:last-child {
+    border-bottom: 2px #cccccc solid;
+    border-radius: 0 0 5px 5px;
+    padding: 0;
+}
+
+.SuperSelectItem:hover {
+    background-color: #b6ccf5;
+    cursor: default;
+}
+
+.select {
+    transition: 0.25s;
+    transform: scale(1);
+    position: absolute;
+
+}
+
+.selectImg {
+    transition: 0.25s;
+    transform: rotate(0) !important;
+
+}
+.helpDiv{
+    top:0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+
+

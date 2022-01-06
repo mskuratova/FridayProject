@@ -3,12 +3,34 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Profile} from "./Components/Profile/Profile";
+import {Registration} from "./Components/Registration/Registration";
+import {TestPage} from "./Components/TestPage/TestPage";
+import {NewPassword} from "./Components/NewPassword/NewPassword";
+import {ResetPassword} from "./Components/ResetPassword/ResetPassword";
+import {Login} from "./Components/Login/Login";
+import {Page404} from "./Components/Page404/Page404";
+import {Provider} from "react-redux";
+import {reduxStore} from "./Redux/reduxStore";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+       <Provider store={reduxStore}>
+           <BrowserRouter>
+               <Routes>
+                   <Route index element={<Profile/>}/>
+                   <Route path={"registration"} element={<Registration/>}/>
+                   <Route path={"testPage"} element={<TestPage/>}/>
+                   <Route path={"newPassword"} element={<NewPassword/>}/>
+                   <Route path={"resetPassword"} element={<ResetPassword/>}/>
+                   <Route path={"login"} element={<Login/>}/>
+                   <Route path={"*"} element={<Page404/>}/>
+               </Routes>
+           </BrowserRouter>
+       </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,0 +1,19 @@
+.SuperSpan {
+    transition: 1s;
+    display: inline-block;
+    padding: 5px;
+    font-size: 15px;
+    font-family: "Arial Black", sans-serif;
+    margin-left: 1.5em;
+    max-width: 200px;
+    word-wrap: break-word;
+
+}
+
+.SuperSpan:hover {
+    transition: 1s;
+    border-radius: 5px;
+    background-color: #cccccc;
+    transform: scale(1.1);
+    margin: 1em 0 1em 2em;
+}
