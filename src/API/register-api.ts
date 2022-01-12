@@ -5,10 +5,6 @@ const instance = axios.create({
     // baseURL: 'http://localhost:7542/2.0/',
 });
 
-const authAPI = {
-
-}
-
-const registerAPI = {
-    login:(email:string,password:string)=>instance.post('auth/register',{email,password})
+export const registerAPI = {
+    register:(email:string,password:string)=>instance.post('auth/register',{email,password})
 }
