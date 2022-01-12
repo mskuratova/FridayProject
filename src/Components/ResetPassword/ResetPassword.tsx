@@ -1,18 +1,18 @@
 import React, {useState} from "react";
+import {storeType} from '../../Redux/reduxStore'
 import {useFormik} from "formik";
-import {authAPI} from "../../API/auth-api";
+import {useDispatch, useSelector} from "react-redux";
+import {resetPasswordTC} from "../../Redux/resetPassword-reducer";
 
 export const ResetPassword = () => {
 
-    const [statusText, setStatusText] = useState<string>('');
-    const [error, setError] = useState<boolean>(false);
-
+    const dispatch = useDispatch();
+    const successText = useSelector<storeType, string>(state => state.resetPasswordReducer.info);
 
     const formik = useFormik({
         initialValues: {
             email: '',
             from: 'From test Friday',
-            // message: 'Test Text',
             message: "\n<div style=\"background-color: lime; padding: 15px\">\npassword recovery link: \n<a href='https://uladzislaupapliouka.github.io/newPassword/$token$'>link</a>\n</div>\n",
         },
 
@@ -27,17 +27,7 @@ export const ResetPassword = () => {
         },
 
         onSubmit: values => {
-            authAPI.resetPassword(values)
-                .then(res => {
-                    if (res.status === 200) {
-                        console.log(res);
-                        setStatusText(res.data.info)
-                    }
-                }).catch(err => {
-                setError(true);
-                setStatusText('Email Not Found');
-
-            })
+            dispatch(resetPasswordTC(values));
             formik.resetForm();
         }
     })
@@ -46,11 +36,12 @@ export const ResetPassword = () => {
         <div>
             <h1>ResetPassword</h1>
             <form onClick={formik.handleSubmit}>
-                {statusText}
+                {successText && successText}
                 <input
                     placeholder={'Email'}
                     {...formik.getFieldProps('email')}
                 />
+                {formik.touched.email && formik.errors.email && <div>{formik.errors.email}</div>}
                 <button disabled={!formik.isValid || !formik.dirty} type={'submit'}>Send Instructions</button>
             </form>
         </div>

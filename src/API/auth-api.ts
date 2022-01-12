@@ -5,13 +5,17 @@ const instance = axios.create({
     // baseURL: 'http://localhost:7542/2.0/',
 });
 
-type ResetPasswordValuesType = {
+export type ResetPasswordValuesType = {
     email: string
     from: string
     message: string
 };
 
-export const authAPI = {
+const authAPI = {
+
+}
+
+export const resetPasswordAPI = {
     resetPassword: (resetPasswordValues: ResetPasswordValuesType) => {
         return instance.post(`auth/forgot`, resetPasswordValues)
     }
