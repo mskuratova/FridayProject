@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { HashRouter, Route, Routes} from "react-router-dom";
 import {Profile} from "./Components/Profile/Profile";
 import {Registration} from "./Components/Registration/Registration";
 import {TestPage} from "./Components/TestPage/TestPage";
@@ -17,7 +17,7 @@ import {reduxStore} from "./Redux/reduxStore";
 ReactDOM.render(
     <React.StrictMode>
        <Provider store={reduxStore}>
-           <BrowserRouter>
+           <HashRouter>
                <Routes>
                    <Route index element={<Profile/>}/>
                    <Route path={"registration"} element={<Registration/>}/>
@@ -27,7 +27,7 @@ ReactDOM.render(
                    <Route path={"login"} element={<Login/>}/>
                    <Route path={"*"} element={<Page404/>}/>
                </Routes>
-           </BrowserRouter>
+           </HashRouter>
        </Provider>
     </React.StrictMode>,
     document.getElementById('root')
