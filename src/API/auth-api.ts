@@ -12,3 +12,14 @@ const authAPI = {
 const registerAPI = {
     login:(email:string,password:string)=>instance.post('auth/register',{email,password})
 }
+
+export type ResetPasswordValuesType = {
+    email: string
+    from: string
+    message: string
+};
+export const resetPasswordAPI = {
+    resetPassword: (resetPasswordValues: ResetPasswordValuesType) => {
+        return instance.post(`auth/forgot`, resetPasswordValues)
+    }
+}
