@@ -1,11 +1,9 @@
-import {combineReducers, createStore, applyMiddleware} from "redux";
-import {ProfileReducer} from "./profileReducer";
-import thunk from "redux-thunk";
+import {combineReducers, createStore} from "redux";
+import {testReducer} from "./testReduxer";
 
 
 const rootReducer = combineReducers({
-    ProfileReducer,
+    testReducer,
 });
 
-export const reduxStore = createStore(rootReducer, applyMiddleware(thunk))
-export type storeType = ReturnType<typeof rootReducer>
+export const reduxStore = createStore(rootReducer)
