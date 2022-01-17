@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
 import {registerAPI} from "../API/register-api";
+import React from "react";
 
 type registerType = {
     _id: string,
@@ -47,13 +48,11 @@ export const registerErrorAC = (errorMessage: string): profileActionType => {
 export const registerThunk = (email: string, password: string) => (dispatch: Dispatch) => {
     registerAPI.register(email, password)
         .then(response => {
-            console.log(response)
-            return response.data
+            dispatch(registerSuccessAC(response.data))
         })
         .catch((e) => {
-            alert(e.response.data.error)
-            dispatch(registerErrorAC(e.response.data.error))
-            return Promise.reject()
+            if (e.response && e.response.data && e.response.data.error) {
+                alert(e.response.data.error)
+            } else alert(e.message)
         })
-        .then((response: registerType) => dispatch(registerSuccessAC(response)))
 }
