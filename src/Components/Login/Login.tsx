@@ -18,23 +18,28 @@ export const Login = () => {
                 rememberMe: false
             },
             onSubmit: values => {
-                dispatch(loginThunk(values.email, values.password, values.rememberMe))
+                dispatch(loginThunk({email: values.email, password: values.password, rememberMe: values.rememberMe}))
             }
         }
     )
 
     const user = useSelector((store: storeType) => store.ProfileReducer)
+
     const navigate = useNavigate();
-    console.log(user)
+
     if (user.isLoggedIn) {
         navigate('/')
     }
+
     return (
         <div>
+
             <h1>Login</h1>
 
             <form onSubmit={formik.handleSubmit}>
+
                 <label htmlFor="email">Email Address</label>
+
                 <SuperInputText
                     id="email"
                     name="email"
@@ -44,6 +49,7 @@ export const Login = () => {
                 />
 
                 <label htmlFor="password">Password</label>
+
                 <SuperInputText
                     id="password"
                     name="password"
@@ -51,7 +57,9 @@ export const Login = () => {
                     onChange={formik.handleChange}
                     value={formik.values.password}
                 />
+
                 <label htmlFor="rememberMe">Remember Me</label>
+
                 <SuperCheckbox
                     id="rememberMe"
                     name="rememberMe"
@@ -59,8 +67,11 @@ export const Login = () => {
                     onChange={formik.handleChange}
                     checked={formik.values.rememberMe}
                 />
+
                 <button type="submit">Submit</button>
+
             </form>
+
         </div>
     )
 }

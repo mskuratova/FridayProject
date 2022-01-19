@@ -1,12 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
 import {storeType} from '../../Redux/reduxStore'
 import {useFormik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {resetPasswordTC} from "../../Redux/resetPassword-reducer";
+import SuperInputText from "../Common/c1-SuperInputText/SuperInputText";
+import SuperButton from "../Common/c2-SuperButton/SuperButton";
 
 export const ResetPassword = () => {
 
     const dispatch = useDispatch();
+
     const successText = useSelector<storeType, string>(state => state.resetPasswordReducer.info);
 
     const formik = useFormik({
@@ -33,17 +36,26 @@ export const ResetPassword = () => {
     })
 
     return (
+
         <div>
+
             <h1>ResetPassword</h1>
+
             <form onClick={formik.handleSubmit}>
+
                 {successText && successText}
-                <input
+
+                <SuperInputText
                     placeholder={'Email'}
                     {...formik.getFieldProps('email')}
                 />
+
                 {formik.touched.email && formik.errors.email && <div>{formik.errors.email}</div>}
-                <button disabled={!formik.isValid || !formik.dirty} type={'submit'}>Send Instructions</button>
+
+                <SuperButton disabled={!formik.isValid || !formik.dirty} type={'submit'}>Send Instructions</SuperButton>
+
             </form>
+
         </div>
     )
 }
