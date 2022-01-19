@@ -60,8 +60,6 @@ export const Registration = () => {
 
     return (
         <div>
-            <PriceRange />
-            <TestTable />
             <h1>Registration</h1>
 
             <form onSubmit={formik.handleSubmit} >
