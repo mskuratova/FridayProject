@@ -5,6 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {registerThunk} from "../../Redux/registerReducer";
 import {storeType} from "../../Redux/reduxStore";
+import SuperButton from "../Common/c2-SuperButton/SuperButton";
+import styles from './registration.module.css'
 
 type ErrorType = {
     email: string
@@ -59,11 +61,11 @@ export const Registration = () => {
 
     return (
 
-        <div>
+        <div className={styles.registrationBlock}>
 
             <h1>Registration</h1>
 
-            <form onSubmit={formik.handleSubmit}>
+            <form className={styles.registrationForm} onSubmit={formik.handleSubmit}>
 
                 <label htmlFor="email">Email Address</label>
 
@@ -102,9 +104,9 @@ export const Registration = () => {
                 {formik.errors.confirmPassword ?
                     <div style={{color: 'red'}}>{formik.errors.confirmPassword}</div> : null}
 
-                <button type="submit"
-                        disabled={!disabled}>Register
-                </button>
+                <SuperButton type="submit"
+                             disabled={!disabled}>Register
+                </SuperButton>
 
             </form>
 

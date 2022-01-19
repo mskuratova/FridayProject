@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {resetPasswordTC} from "../../Redux/resetPassword-reducer";
 import SuperInputText from "../Common/c1-SuperInputText/SuperInputText";
 import SuperButton from "../Common/c2-SuperButton/SuperButton";
+import styles from './resetPassword.module.css'
 
 export const ResetPassword = () => {
 
@@ -37,11 +38,11 @@ export const ResetPassword = () => {
 
     return (
 
-        <div>
+        <div className={styles.resetPasswordBlock}>
 
-            <h1>ResetPassword</h1>
+            <h1>Reset Password</h1>
 
-            <form onClick={formik.handleSubmit}>
+            <form className={styles.resetPasswordForm} onClick={formik.handleSubmit}>
 
                 {successText && successText}
 

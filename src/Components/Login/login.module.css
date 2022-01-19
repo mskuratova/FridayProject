@@ -1,4 +1,4 @@
-.resetPasswordBlock {
+.loginBlock {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.resetPasswordForm {
+.loginForm {
     display: flex;
     flex-direction: column;
     justify-content: center;

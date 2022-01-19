@@ -6,7 +6,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "../../Redux/profileReducer";
 import {storeType} from "../../Redux/reduxStore";
 import {useNavigate} from "react-router-dom";
-
+import SuperButton from "../Common/c2-SuperButton/SuperButton";
+import styles from './login.module.css'
 export const Login = () => {
 
     const dispatch = useDispatch();
@@ -32,11 +33,11 @@ export const Login = () => {
     }
 
     return (
-        <div>
+        <div className={styles.loginBlock}>
 
             <h1>Login</h1>
 
-            <form onSubmit={formik.handleSubmit}>
+            <form className={styles.loginForm} onSubmit={formik.handleSubmit}>
 
                 <label htmlFor="email">Email Address</label>
 
@@ -68,7 +69,7 @@ export const Login = () => {
                     checked={formik.values.rememberMe}
                 />
 
-                <button type="submit">Submit</button>
+                <SuperButton type="submit">Submit</SuperButton>
 
             </form>
 
