@@ -1,15 +1,18 @@
 import {Dispatch} from "redux";
-import {resetPasswordAPI, ResetPasswordValuesType} from "../API/auth-api";
+import {resetPasswordAPI, resetPasswordDataType} from "../API/API";
 
 type ActionType = SetSuccessInfoType;
+
 type InitialStateType = {
     info: string,
-    error?: string,
+    error?: string
 }
+
+export type SetSuccessInfoType = ReturnType<typeof setSuccessInfoAC>;
 
 const initialState = {
     info: '',
-    error: 'Something wrong',
+    error: '',
 };
 
 export const resetPasswordReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
@@ -24,8 +27,6 @@ export const resetPasswordReducer = (state: InitialStateType = initialState, act
     }
 }
 
-export type SetSuccessInfoType = ReturnType<typeof setSuccessInfoAC>;
-
 export const setSuccessInfoAC = (info: string) => {
     return {
         type: 'SET-SUCCESS-INFO',
@@ -33,16 +34,17 @@ export const setSuccessInfoAC = (info: string) => {
     } as const
 }
 
-export const resetPasswordTC = (resetPasswordData: ResetPasswordValuesType) => (dispatch: Dispatch) => {
+export const resetPasswordTC = (resetPasswordData: resetPasswordDataType) => (dispatch: Dispatch) => {
     resetPasswordAPI.resetPassword(resetPasswordData)
-        .then(res => {
-            if (res.status === 200) {
-                console.log(res);
-                dispatch(setSuccessInfoAC(res.data.info));
+        .then(response => {
+            if (response.status === 200) {
+                console.log(response);
+                dispatch(setSuccessInfoAC(response.data.info));
             }
-        }).catch(err => {
-        console.log(err);
+        }).catch(error => {
+        console.log(error);
     })
 }
+
 
 
