@@ -1,0 +1,5 @@
+.tableInfoRowList{
+    display: flex;
+    list-style-type: none;
+    column-gap: 20px;
+}

@@ -1,4 +1,5 @@
 import axios from "axios";
+import {FormikSetNewPasswordValuesType} from "../Components/NewPassword/NewPasswordContainer";
 
 const instance = axios.create({
     baseURL: 'https://neko-back.herokuapp.com/2.0/',
@@ -11,12 +12,14 @@ export type ResetPasswordValuesType = {
     message: string
 };
 
-const authAPI = {
-
-}
+const authAPI = {}
 
 export const resetPasswordAPI = {
     resetPassword: (resetPasswordValues: ResetPasswordValuesType) => {
         return instance.post(`auth/forgot`, resetPasswordValues)
+    },
+    setNewPassword: (values: FormikSetNewPasswordValuesType) => {
+        return instance.post('/auth/set-new-password', values)
     }
+
 }
