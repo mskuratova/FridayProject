@@ -8,6 +8,7 @@ import {storeType} from "../../Redux/reduxStore";
 import {useNavigate} from "react-router-dom";
 import SuperButton from "../Common/c2-SuperButton/SuperButton";
 import styles from './login.module.css'
+
 export const Login = () => {
 
     const dispatch = useDispatch();
@@ -27,7 +28,6 @@ export const Login = () => {
     const user = useSelector((store: storeType) => store.ProfileReducer)
 
     const navigate = useNavigate();
-
     if (user.isLoggedIn) {
         navigate('/')
     }
