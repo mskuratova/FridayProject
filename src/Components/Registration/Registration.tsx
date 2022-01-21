@@ -5,9 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {registerThunk} from "../../Redux/registerReducer";
 import {storeType} from "../../Redux/reduxStore";
-import {FormControl} from "@mui/material";
-import PriceRange from "../PristPange/PriceRange";
-import {TestTable} from "../PristPange/TestTable";
+import {FormControl} from "@mui/material";;
 
 type ErrorType = {
     email: string

@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { HashRouter, Route, Routes} from "react-router-dom";
 import {Profile} from "./Components/Profile/Profile";
 import {Registration} from "./Components/Registration/Registration";
-import {TestPage} from "./Components/TestPage/TestPage";
+import {TestPage} from "./Components/SearchComponents/TestPage";
 import {NewPassword} from "./Components/NewPassword/NewPassword";
 import {ResetPassword} from "./Components/ResetPassword/ResetPassword";
 import {Login} from "./Components/Login/Login";

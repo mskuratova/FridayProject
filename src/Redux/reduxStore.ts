@@ -4,6 +4,7 @@ import {RegisterReducer} from "./registerReducer";
 import thunk from "redux-thunk";
 import {resetPasswordReducer} from "./resetPassword-reducer";
 import {ProfileReducer} from "./profileReducer";
+import {searchReducer} from "./searchReducer";
 
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     RegisterReducer,
     resetPasswordReducer,
     ProfileReducer,
+    searchReducer
 });
 
 export const reduxStore = createStore(rootReducer, applyMiddleware(thunk));
