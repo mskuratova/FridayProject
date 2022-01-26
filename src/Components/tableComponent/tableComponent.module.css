@@ -1,0 +1,38 @@
+
+.tableHead{
+    margin-bottom: 40px;
+}
+
+.tableComponentList {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.tableComponentItem {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.tableItem:not(:last-child){
+    margin-bottom: 30px;
+}
+
+.firstColumn {
+    width: 200px;
+}
+
+.secondColumn {
+    width: 100px;
+}
+
+.thirdColumn {
+    width: 180px;
+}
+
+.fourthColumn {
+    width: 240px;
+}
+.fifthColumn {
+    width: 100px;
+}

@@ -1,62 +1,81 @@
 import React from "react";
-import {storeType} from '../../Redux/reduxStore'
-import {useFormik} from "formik";
-import {useDispatch, useSelector} from "react-redux";
-import {resetPasswordTC} from "../../Redux/resetPassword-reducer";
-import SuperInputText from "../Common/c1-SuperInputText/SuperInputText";
-import SuperButton from "../Common/c2-SuperButton/SuperButton";
-import styles from './resetPassword.module.css'
+import {FormikProps} from "formik";
+import {FormValuesType} from "./resetPasswordContainer";
+import s from './resetPassword.module.css'
+import Logo from '../../assets/images/It-incubator.png'
+import EmailIcon from '../../assets/images/email-icon.svg'
 
-export const ResetPassword = () => {
+type PropsType = {
+    successText: string
+    formik: FormikProps<FormValuesType>
+    isLoading: boolean
+    isSent: boolean
+    email: string
+}
 
-    const dispatch = useDispatch();
+export const ResetPassword = ({
+                                  successText,
+                                  formik,
+                                  isLoading,
+                                  isSent,
+                                  email,
+                              }: PropsType): JSX.Element => {
 
-    const successText = useSelector<storeType, string>(state => state.resetPasswordReducer.info);
-
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            from: 'From test Friday',
-            message: "\n<div style=\"background-color: lime; padding: 15px\">\npassword recovery link: \n<a href='https://uladzislaupapliouka.github.io/newPassword/$token$'>link</a>\n</div>\n",
-        },
-
-        validate: (values) => {
-            const errors: Partial<{ email: string }> = {};
-            if (!values.email) {
-                errors.email = 'Required'
-            } else if (values.email.length < 3) {
-                errors.email = 'Invalid email address';
-            }
-            return errors
-        },
-
-        onSubmit: values => {
-            dispatch(resetPasswordTC(values));
-            formik.resetForm();
-        }
-    })
 
     return (
+        <div className={s.container}>
 
-        <div className={styles.resetPasswordBlock}>
+            <div className={s.resetFormField}>
 
-            <h1>Reset Password</h1>
+                <div className={s.resetFormContainer} style={{opacity: isLoading ? 0.5 : 1}}>
 
-            <form className={styles.resetPasswordForm} onClick={formik.handleSubmit}>
+                    <img src={Logo} alt="logo"/>
 
-                {successText && successText}
+                    {!isSent ? <>
+                            <h2 className={s.title}>Forgot your password?</h2>
+                            <form className={s.form} onSubmit={formik.handleSubmit}>
 
-                <SuperInputText
-                    placeholder={'Email'}
-                    {...formik.getFieldProps('email')}
-                />
+                                <div className={s.inputBox}>
+                                    <span className={s.statusText}>{successText && successText}</span>
+                                    <input
 
-                {formik.touched.email && formik.errors.email && <div>{formik.errors.email}</div>}
+                                        className={s.input}
+                                        placeholder={'Email'}
+                                        {...formik.getFieldProps('email')
 
-                <SuperButton disabled={!formik.isValid || !formik.dirty} type={'submit'}>Send Instructions</SuperButton>
+                                        }
+                                    />
 
-            </form>
+                                    {formik.touched.email && formik.errors.email &&
+                                        <div className={s.errorText}>{formik.errors.email}</div>}
+                                </div>
+                                <p className={s.text}>
+                                    Enter your email address and we will send you further instructions
+                                </p>
 
+                                <button className={s.buttonSend} disabled={!formik.isValid || !formik.dirty || isLoading}
+                                        type={'submit'}>Send Instructions
+                                </button>
+                            </form>
+                            <div className={`${s.ldsRing} ${isLoading ? s.displayNone : null}`}
+                                 style={{display: isLoading ? 'block' : 'none'}}>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </> :
+                        <>
+                            <img className={s.emailIcon} src={EmailIcon} alt="icon"/>
+                            <h2 className={s.title}>Check Email</h2>
+                            <p className={s.text}>
+                                We’ve sent an Email with instructions to <br/> {email}
+                            </p>
+                        </>
+                    }
+
+                </div>
+            </div>
         </div>
     )
 }
