@@ -23,7 +23,7 @@ export const TableComponent = ({tableInfoRowNames, packInfo, myID, addNewPack, d
                         {tableInfoRowNames[0]}
                     </div>
                     <div className={s.secondColumn}>
-                        {tableInfoRowNames[1]}
+                        {tableInfoRowNames[1]}<button>/\</button><button>\/</button>
                     </div>
                     <div className={s.thirdColumn}>
                         {tableInfoRowNames[2]}

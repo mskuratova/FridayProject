@@ -1038,8 +1038,6 @@ export const TestTable = () => {
                 } else {}
             }
 
-        console.log(newArrayBN)
-        console.log(newArrayBN[0].productName)
     }
 
     return (

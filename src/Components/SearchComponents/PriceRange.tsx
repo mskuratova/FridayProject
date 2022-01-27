@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Range, getTrackBackground} from 'react-range';
 import {state} from "../TastTable/TestTable";
-import {useSelector} from "react-redux";
-import {tableReducer} from "../../Redux/table-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {getPackInfoAC, getPackInfoTC, tableReducer} from "../../Redux/table-reducer";
+import {useDebounce} from "../hooks/useDebounce";
 
 interface IPriceRangeProps {
     // loading: boolean;
@@ -11,19 +12,23 @@ interface IPriceRangeProps {
     // priceRangeCallback: ( ) => void;
 }
 
-const PriceRange: React.FC<IPriceRangeProps> = (
-    {
-        // priceRangeCallback ,
-    }
-) => {
+const PriceRange: React.FC<IPriceRangeProps> = () => {
     let minCardsCount = useSelector<any, number >(state => state.tableReducer.cardsPackData.minCardsCount)
     let maxCardsCount = useSelector<any, number>(state => state.tableReducer.cardsPackData.maxCardsCount)
+    let cardsPackData = useSelector<any, any>(state => state.tableReducer.cardsPackData.cardPacks)
 
     const [values, setValues] = useState([minCardsCount, maxCardsCount]);
+    let dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log(minCardsCount, maxCardsCount)
+        dispatch(getPackInfoTC(minCardsCount, maxCardsCount))
+    }, [minCardsCount,maxCardsCount, values]);
 
     const searchPriceRange = (values:Array<number>) => {
-        let newArrayPR = state.products.filter(n => n.price > values[0] && n.price < values[1]);
-        console.log(newArrayPR)
+        // useDebounce (setValues(values),4000)
+        // let newArrayPR = cardsPackData.filter((n: { cardsCount: number; }) => n.cardsCount > values[0] && n.cardsCount < values[1]);
+        console.log(values)
     }
 
     return (
@@ -107,7 +112,7 @@ const PriceRange: React.FC<IPriceRangeProps> = (
                 )}
             />
             <button
-                onClick={()=> searchPriceRange(values)}>Search</button>
+                onClick={()=>searchPriceRange(values)}>Search</button>
         </div>
     );
 };

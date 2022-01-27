@@ -12,27 +12,27 @@ export const TableComponentContainer = () => {
     const dispatch = useDispatch();
 
 
-    useEffect(() => {
-        authAPI.login('bizmestev@mail.ru', 'hapit123', true)
-            .then(res => {
-                // console.log(res.data)
-            })
-
-        setTimeout(() => {
-            authAPI.authMe()
-                .then(res => {
-                    console.log(res.data._id)
-                    dispatch(getUserIDAC(res.data._id))
-                })
-        }, 2000)
-
-        setTimeout(() => {
-            dispatch(getPackInfoTC(1, 10));
-
-        }, 4000)
-
-
-    }, [])
+    // useEffect(() => {
+    //     authAPI.login('bizmestev@mail.ru', 'hapit123', true)
+    //         .then(res => {
+    //             // console.log(res.data)
+    //         })
+    //
+    //     setTimeout(() => {
+    //         authAPI.authMe()
+    //             .then(res => {
+    //                 console.log(res.data._id)
+    //                 dispatch(getUserIDAC(res.data._id))
+    //             })
+    //     }, 2000)
+    //
+    //     setTimeout(() => {
+    //         dispatch(getPackInfoTC(1, 10));
+    //
+    //     }, 4000)
+    //
+    //
+    // }, [])
 
 
     const packInfo = useSelector<storeType, CardsPackDataType>(state => state.tableReducer.cardsPackData);
