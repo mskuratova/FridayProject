@@ -1,5 +1,5 @@
 import React from 'react'
-import {state} from "../PristPange/TestTable";
+import {state} from "../TastTable/TestTable";
 import {useSelector} from "react-redux";
 import {storeType} from "../../Redux/reduxStore";
 

@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {Range, getTrackBackground} from 'react-range';
-import {state} from "./TestTable";
+import {state} from "../TastTable/TestTable";
+import {useSelector} from "react-redux";
+import {tableReducer} from "../../Redux/table-reducer";
 
 interface IPriceRangeProps {
     // loading: boolean;
@@ -14,7 +16,10 @@ const PriceRange: React.FC<IPriceRangeProps> = (
         // priceRangeCallback ,
     }
 ) => {
-    const [values, setValues] = useState([100, 20000]);
+    let minCardsCount = useSelector<any, number >(state => state.tableReducer.cardsPackData.minCardsCount)
+    let maxCardsCount = useSelector<any, number>(state => state.tableReducer.cardsPackData.maxCardsCount)
+
+    const [values, setValues] = useState([minCardsCount, maxCardsCount]);
 
     const searchPriceRange = (values:Array<number>) => {
         let newArrayPR = state.products.filter(n => n.price > values[0] && n.price < values[1]);
@@ -25,9 +30,9 @@ const PriceRange: React.FC<IPriceRangeProps> = (
         <div>
             <Range
                 values={values}
-                step={100}
-                min={100}
-                max={20000}
+                step={1}
+                min={minCardsCount}
+                max={maxCardsCount}
                 onChange={values => setValues(values)}
                 renderTrack={({props, children}) => (
                     <div

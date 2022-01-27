@@ -1,5 +1,5 @@
 import React from "react";
-import PriceRange from "./PriceRange";
+import PriceRange from "../SearchComponents/PriceRange";
 import Pagination from "../SearchComponents/Pagination";
 
 export const state = {

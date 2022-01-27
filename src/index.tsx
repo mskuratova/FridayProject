@@ -13,7 +13,8 @@ import {Login} from "./Components/Login/Login";
 import {Page404} from "./Components/Page404/Page404";
 import {Provider} from "react-redux";
 import {reduxStore} from "./Redux/reduxStore";
-import {TestTable} from "./Components/PristPange/TestTable";
+import {TestTable} from "./Components/TastTable/TestTable";
+import {Table} from "./Components/Table/Table";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -26,6 +27,7 @@ ReactDOM.render(
                    <Route path={"newPassword"} element={<NewPassword/>}/>
                    <Route path={"resetPassword"} element={<ResetPassword/>}/>
                    <Route path={"login"} element={<Login/>}/>
+                   <Route path={"table"} element={<Table/>}/>
                    <Route path={"test"} element={<TestTable/>}/>
                    <Route path={"*"} element={<Page404/>}/>
                </Routes>
