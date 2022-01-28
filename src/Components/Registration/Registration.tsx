@@ -7,6 +7,7 @@ import {registerThunk} from "../../Redux/registerReducer";
 import {storeType} from "../../Redux/reduxStore";
 import SuperButton from "../Common/c2-SuperButton/SuperButton";
 import styles from './registration.module.css'
+import {FormControl} from "@mui/material";;
 
 type ErrorType = {
     email: string
@@ -65,8 +66,8 @@ export const Registration = () => {
 
             <h1>Registration</h1>
 
-            <form className={styles.registrationForm} onSubmit={formik.handleSubmit}>
-
+            <form className={styles.registrationForm}onSubmit={formik.handleSubmit} >
+                <FormControl>
                 <label htmlFor="email">Email Address</label>
 
                 <SuperInputText
@@ -96,7 +97,7 @@ export const Registration = () => {
                 <SuperInputText
                     id="confirmPassword"
                     name="confirmPassword"
-                    type="confirmPassword"
+                    type="Password"
                     onChange={formik.handleChange}
                     value={formik.values.confirmPassword}
                 />
@@ -107,7 +108,7 @@ export const Registration = () => {
                 <SuperButton type="submit"
                              disabled={!disabled}>Register
                 </SuperButton>
-
+                </FormControl>
             </form>
 
         </div>

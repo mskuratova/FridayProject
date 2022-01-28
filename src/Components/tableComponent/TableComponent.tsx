@@ -1,6 +1,7 @@
-import React from "react"
+import React, {ChangeEvent, useEffect, useState} from "react"
 import s from './tableComponent.module.css'
 import {CardsPackDataType} from "../../Redux/table-reducer";
+import {useDebounce} from "../hooks/useDebounce";
 
 type PropsType = {
     tableInfoRowNames: string[]
@@ -8,11 +9,37 @@ type PropsType = {
     myID: number
     addNewPack: () => void
     deletePack: (id: string) => void
+    searchByName: (packName:string) => void
 }
 
-export const TableComponent = ({tableInfoRowNames, packInfo, myID, addNewPack, deletePack}: PropsType) => {
+export const TableComponent = ({
+                                   tableInfoRowNames,
+                                   packInfo,
+                                   myID,
+                                   addNewPack,
+                                   deletePack,
+                                   searchByName
+                               }: PropsType) => {
+
+    const [packName, setPackName] = useState("");
+    let debouncedValue = useDebounce(packName, 4000);
+
+    const onChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
+        let newPackName = e.currentTarget.value
+        setPackName(newPackName)
+
+    }
+    useEffect(() => {
+        searchByName(debouncedValue)
+    }, [debouncedValue])
+
     return (
         <div className={s.tableInfoRowContainer}>
+            <div><input type="text" id="myInput"
+                        value={packName}
+                        onChange={onChangeHandler}
+                        placeholder="Поиск по именам.." title="Введите имя"/>
+            </div>
             <button onClick={() => addNewPack()}>Add New Pack</button>
 
             <ul className={s.tableComponentList}>
