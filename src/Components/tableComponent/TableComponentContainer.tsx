@@ -16,10 +16,10 @@ export const TableComponentContainer = () => {
 
 
     useEffect(() => {
-        authAPI.login('bizmestev@mail.ru', 'hapit123', true)
+       /* authAPI.login('bizmestev@mail.ru', 'hapit123', true)
             .then(res => {
                 // console.log(res.data)
-            })
+            })*/
 
         setTimeout(() => {
             authAPI.authMe()

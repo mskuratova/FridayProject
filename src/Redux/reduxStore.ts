@@ -14,6 +14,5 @@ const rootReducer = combineReducers({
     tableReducer,
     searchReducer
 });
-
 export type storeType = ReturnType<typeof rootReducer>
 export const reduxStore = createStore(rootReducer, applyMiddleware(thunk))
