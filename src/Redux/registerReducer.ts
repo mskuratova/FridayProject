@@ -50,8 +50,7 @@ export const registerThunk = (registerData: registerDataType) => (dispatch: Disp
     registerAPI.register(registerData)
 
         .then(response => {
-            console.log(response)
-            return response.data
+            dispatch(registerSuccessAC(response.data))
         })
 
         .catch((error) => {

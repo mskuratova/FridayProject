@@ -14,7 +14,6 @@ import {reduxStore} from "./Redux/reduxStore";
 import {ResetPasswordContainer} from "./Components/ResetPassword/resetPasswordContainer";
 import {NewPasswordContainer} from "./Components/NewPassword/NewPasswordContainer";
 import {Table} from "./Components/Table/Table";
-
 ReactDOM.render(
     <React.StrictMode>
        <Provider store={reduxStore}>
@@ -23,8 +22,8 @@ ReactDOM.render(
                    <Route index element={<Profile/>}/>
                    <Route path={"registration"} element={<Registration/>}/>
                    <Route path={"testPage"} element={<TestPage/>}/>
-                   <Route path={"newPassword/:token"} element={<NewPasswordContainer/>}/>
-                   <Route path={"resetPassword"} element={<ResetPasswordContainer/>}/>
+                   <Route path={"newPassword"} element={<NewPassword/>}/>
+                   <Route path={"resetPassword"} element={<ResetPassword/>}/>
                    <Route path={"login"} element={<Login/>}/>
                    <Route path={"table"} element={<Table/>}/>
                    <Route path={"*"} element={<Page404/>}/>
