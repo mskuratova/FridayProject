@@ -6,14 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import { HashRouter, Route, Routes} from "react-router-dom";
 import {Profile} from "./Components/Profile/Profile";
 import {Registration} from "./Components/Registration/Registration";
-import {TestPage} from "./Components/TestPage/TestPage";
+import {TestPage} from "./Components/TastPage/TestPage";
 import {Login} from "./Components/Login/Login";
 import {Page404} from "./Components/Page404/Page404";
 import {Provider} from "react-redux";
 import {reduxStore} from "./Redux/reduxStore";
-import {ResetPasswordContainer} from "./Components/ResetPassword/resetPasswordContainer";
-import {NewPasswordContainer} from "./Components/NewPassword/NewPasswordContainer";
 import {Table} from "./Components/Table/Table";
+import {NewPasswordContainer} from "./Components/NewPassword/NewPasswordContainer";
+import {ResetPasswordContainer} from "./Components/ResetPassword/resetPasswordContainer";
 ReactDOM.render(
     <React.StrictMode>
        <Provider store={reduxStore}>
@@ -22,8 +22,8 @@ ReactDOM.render(
                    <Route index element={<Profile/>}/>
                    <Route path={"registration"} element={<Registration/>}/>
                    <Route path={"testPage"} element={<TestPage/>}/>
-                   <Route path={"newPassword"} element={<NewPassword/>}/>
-                   <Route path={"resetPassword"} element={<ResetPassword/>}/>
+                   <Route path={"newPassword"} element={<NewPasswordContainer/>}/>
+                   <Route path={"resetPassword"} element={<ResetPasswordContainer/>}/>
                    <Route path={"login"} element={<Login/>}/>
                    <Route path={"table"} element={<Table/>}/>
                    <Route path={"*"} element={<Page404/>}/>

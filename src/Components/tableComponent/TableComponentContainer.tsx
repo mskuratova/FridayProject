@@ -1,11 +1,12 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {TableComponent} from "./TableComponent";
 import {useDispatch, useSelector} from "react-redux";
-import {CardsPackDataType, getPackInfoTC} from "../../Redux/table-reducer";
+import {CardsPackDataType, getPackInfoTC, getUserIDAC} from "../../Redux/table-reducer";
 import {storeType} from "../../Redux/reduxStore";
 import {tableAPI} from "../../API/table-api";
 import PriceRange from "../SearchComponents/PriceRange";
 import {Pagination} from "@mui/material";
+import {authAPI} from "../../API/auth-api";
 
 
 export const TableComponentContainer = () => {

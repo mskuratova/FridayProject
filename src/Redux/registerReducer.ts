@@ -51,13 +51,12 @@ export const registerThunk = (registerData: registerDataType) => (dispatch: Disp
 
         .then(response => {
             dispatch(registerSuccessAC(response.data))
+            return response
         })
-
         .catch((error) => {
             alert(error.response.data.error)
             dispatch(registerErrorAC(error.response.data.error))
-            return Promise.reject()
+            return error
         })
-
         .then((response: registerType) => dispatch(registerSuccessAC(response)))
 }
