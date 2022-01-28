@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { HashRouter, Route, Routes} from "react-router-dom";
 import {Profile} from "./Components/Profile/Profile";
 import {Registration} from "./Components/Registration/Registration";
-import {TestPage} from "./Components/TestPage/TestPage";
+import {TestPage} from "./Components/TastPage/TestPage";
 import {Login} from "./Components/Login/Login";
 import {Page404} from "./Components/Page404/Page404";
 import {Provider} from "react-redux";

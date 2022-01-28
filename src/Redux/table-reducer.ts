@@ -110,7 +110,7 @@ export const getUserIDAC = (userID: number) => {
 export const getPackInfoTC = (page: number | undefined = 1, pageCount: number | undefined = 10,
                               min: number | undefined = 0, max: number | undefined= 10,
                               sortPocks: string | undefined="", packName: string |undefined = "") => (dispatch: Dispatch) => {
-    tableAPI.getPackInfo(page, pageCount, min, max, sortPocks, packName)
+    tableAPI.getPackInfo(page, pageCount)
         .then(res => {
             dispatch(getPackInfoAC(res.data))
             console.log(res.data)
