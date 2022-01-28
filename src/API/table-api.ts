@@ -8,7 +8,7 @@ const instance = axios.create({
 });
 
 export const tableAPI = {
-    getPackInfo: (page: number, pageCount: number=10, min: number, max: number, sortPocks: number) => {
+    getPackInfo: (page: number, pageCount: number=5, min: number, max: number, sortPocks: number) => {
         return instance.get<CardsPackDataType>(`cards/pack?page=${page}&pageCount=${pageCount}&min=${min}&max=${max}&sortPocks=${sortPocks}`);
     },
     addPack: () => {

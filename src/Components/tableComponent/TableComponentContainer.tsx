@@ -5,6 +5,7 @@ import {CardsPackDataType, getPackInfoTC, getUserIDAC} from "../../Redux/table-r
 import {storeType} from "../../Redux/reduxStore";
 import {authAPI} from "../../API/auth-api";
 import {tableAPI} from "../../API/table-api";
+import PriceRange from "../SearchComponents/PriceRange";
 
 export const TableComponentContainer = () => {
 
@@ -53,18 +54,21 @@ export const TableComponentContainer = () => {
             .then(res => {
                 console.log(res)
             })
-            .catch(err =>{
+            .catch(err => {
                 console.log(err)
             })
     }
 
     return (
-        <TableComponent
-            tableInfoRowNames={tableInfoRowNames}
-            packInfo={packInfo}
-            myID={mydID}
-            addNewPack={addNewPack}
-            deletePack={deletePack}
-        />
+        <>
+            <PriceRange/>
+            <TableComponent
+                tableInfoRowNames={tableInfoRowNames}
+                packInfo={packInfo}
+                myID={mydID}
+                addNewPack={addNewPack}
+                deletePack={deletePack}
+            />
+        </>
     )
 }

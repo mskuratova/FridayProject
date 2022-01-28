@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Range, getTrackBackground} from 'react-range';
-import {state} from "../TastTable/TestTable";
 import {useDispatch, useSelector} from "react-redux";
-import {getPackInfoAC, getPackInfoTC, tableReducer} from "../../Redux/table-reducer";
-import {useDebounce} from "../hooks/useDebounce";
+import { getPackInfoTC} from "../../Redux/table-reducer";
 
 interface IPriceRangeProps {
     // loading: boolean;
@@ -15,19 +13,25 @@ interface IPriceRangeProps {
 const PriceRange: React.FC<IPriceRangeProps> = () => {
     let minCardsCount = useSelector<any, number >(state => state.tableReducer.cardsPackData.minCardsCount)
     let maxCardsCount = useSelector<any, number>(state => state.tableReducer.cardsPackData.maxCardsCount)
-    let cardsPackData = useSelector<any, any>(state => state.tableReducer.cardsPackData.cardPacks)
 
     const [values, setValues] = useState([minCardsCount, maxCardsCount]);
+    // let [done, setDone] = useState(true);
     let dispatch = useDispatch();
 
+    // done = useDebounce(done, 4000);
+
     useEffect(() => {
-        console.log(minCardsCount, maxCardsCount)
-        dispatch(getPackInfoTC(minCardsCount, maxCardsCount))
-    }, [minCardsCount,maxCardsCount, values]);
+    //     if (done) {
+    //         setDone(false);
+            dispatch(getPackInfoTC(1, 10, minCardsCount, maxCardsCount));
+    //     }
+    //     setDone(true);
+    }, []);
+
 
     const searchPriceRange = (values:Array<number>) => {
-        // useDebounce (setValues(values),4000)
-        // let newArrayPR = cardsPackData.filter((n: { cardsCount: number; }) => n.cardsCount > values[0] && n.cardsCount < values[1]);
+        setValues(values);
+        dispatch(getPackInfoTC(1, 10, values[0], values[1]));
         console.log(values)
     }
 

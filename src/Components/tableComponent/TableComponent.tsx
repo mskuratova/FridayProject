@@ -14,7 +14,6 @@ type PropsType = {
 export const TableComponent = ({tableInfoRowNames, packInfo, myID, addNewPack, deletePack}: PropsType) => {
     return (
         <div className={s.tableInfoRowContainer}>
-            <PriceRange />
             <button onClick={() => addNewPack()}>Add New Pack</button>
 
             <ul className={s.tableComponentList}>
@@ -23,7 +22,7 @@ export const TableComponent = ({tableInfoRowNames, packInfo, myID, addNewPack, d
                         {tableInfoRowNames[0]}
                     </div>
                     <div className={s.secondColumn}>
-                        {tableInfoRowNames[1]}<button>/\</button><button>\/</button>
+                        {tableInfoRowNames[1]}
                     </div>
                     <div className={s.thirdColumn}>
                         {tableInfoRowNames[2]}

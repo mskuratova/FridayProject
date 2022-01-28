@@ -1,22 +1,32 @@
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 
 
-export const useDebounce = (func:any, delay: number, cleanUp: boolean = false) => {
+export const useDebounce = (value: boolean, delay: number) => {
+    const [done, setDone] = useState(value);
 
-    const timeRef = useRef<ReturnType<typeof setTimeout> | undefined>();
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setDone(true);
+        }, delay);
 
-    function clearTimer() {
-        if (timeRef.current) {
-            // @ts-ignore
-            clearTimer(timeRef.current);
-            timeRef.current = undefined;
-        }
-    }
+        return () => clearTimeout(timeoutId);
+    }, [done]);
 
-    useEffect(() => (cleanUp ? clearTimer : undefined), [cleanUp]);
+    return done;
 
-    return(...args:any) => {
-        clearTimer();
-        timeRef.current = setTimeout(() => func(...args), delay);
-    }
+    // const timeRef = useRef<ReturnType<typeof setTimeout> | undefined>();
+    //
+    // function clearTimer() {
+    //     if (timeRef.current) {
+    //         clearTimer(timeRef.current);
+    //         timeRef.current = undefined;
+    //     }
+    // }
+    //
+    // useEffect(() => (cleanUp ? clearTimer : undefined), [cleanUp]);
+    //
+    // return(...args:any) => {
+    //     clearTimer();
+    //     timeRef.current = setTimeout(() => func(...args), delay);
+    // }
 };
