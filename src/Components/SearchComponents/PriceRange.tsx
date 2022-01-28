@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Range, getTrackBackground} from 'react-range';
 import {useDispatch, useSelector} from "react-redux";
 import { getPackInfoTC} from "../../Redux/table-reducer";
@@ -11,31 +11,20 @@ interface IPriceRangeProps {
     // priceRangeCallback: ( ) => void;
 }
 
-const PriceRange: React.FC<IPriceRangeProps> = () => {
+const PriceRange: React.FC<IPriceRangeProps> = React.memo(() => {
     let minCardsCount = useSelector<storeType, number >(state => state.tableReducer.cardsPackData.minCardsCount)
     let maxCardsCount = useSelector<storeType, number>(state => state.tableReducer.cardsPackData.maxCardsCount)
     let pageCount = useSelector<storeType, number>(state => state.tableReducer.cardsPackData.pageCount)
     let page = useSelector<storeType, number>(state => state.tableReducer.cardsPackData.page)
 
+    let packName = useSelector<storeType, string>(state => state.tableReducer.cardsPackData.packName)
+
     const [values, setValues] = useState([minCardsCount, maxCardsCount]);
-    // let [done, setDone] = useState(true);
     let dispatch = useDispatch();
-
-    // done = useDebounce(done, 4000);
-
-    useEffect(() => {
-    //     if (done) {
-    //         setDone(false);
-            dispatch(getPackInfoTC(page, pageCount, minCardsCount, maxCardsCount));
-    //     }
-    //     setDone(true);
-    }, []);
-
 
     const searchPriceRange = (values:Array<number>) => {
         setValues(values);
-        dispatch(getPackInfoTC(page, pageCount, values[0], values[1]));
-        console.log(values)
+        dispatch(getPackInfoTC(page, pageCount, values[0], values[1], packName));
     }
 
     return (
@@ -122,6 +111,6 @@ const PriceRange: React.FC<IPriceRangeProps> = () => {
                 onClick={()=>searchPriceRange(values)}>Search</button>
         </div>
     );
-};
+});
 
 export default PriceRange;

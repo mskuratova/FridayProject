@@ -33,6 +33,7 @@ export type CardsPackDataType = {
     "cardPacksTotalCount": number,
     "minCardsCount": number,
     "maxCardsCount": number,
+    "packName": string,
     "token": string,
     "tokenDeathTime": number
 };
@@ -59,10 +60,11 @@ const InitialState: InitialStateType = {
             }
         ],
         "page": 1,
-        "pageCount": 5,
+        "pageCount": 10,
         "cardPacksTotalCount": 0,
         "minCardsCount": 0,
         "maxCardsCount": 10,
+        "packName": "",
         "token": '',
         "tokenDeathTime": 0
     },
@@ -105,8 +107,10 @@ export const getUserIDAC = (userID: number) => {
     } as const
 }
 
-export const getPackInfoTC = ( page: number=1, pageCount: number=5, min: number = 0, max:number=5, sortPocks:number= 1) => (dispatch: Dispatch) => {
-    tableAPI.getPackInfo(page, pageCount, min, max, sortPocks)
+export const getPackInfoTC = (page: number | undefined = 1, pageCount: number | undefined = 10,
+                              min: number | undefined = 0, max: number | undefined= 10,
+                              sortPocks: string | undefined="", packName: string |undefined = "") => (dispatch: Dispatch) => {
+    tableAPI.getPackInfo(page, pageCount, min, max, sortPocks, packName)
         .then(res => {
             dispatch(getPackInfoAC(res.data))
             console.log(res.data)

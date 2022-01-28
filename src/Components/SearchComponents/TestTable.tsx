@@ -1,6 +1,4 @@
 import React from "react";
-import PriceRange from "../SearchComponents/PriceRange";
-import Pagination from "../SearchComponents/Pagination";
 
 export const state = {
     "products":[
@@ -1042,7 +1040,6 @@ export const TestTable = () => {
 
     return (
         <div>
-            <PriceRange />
             <input type="text" id="myInput"
             onKeyUp={searchByName}
                    placeholder="Поиск по именам.." title="Введите имя"/>
@@ -1069,7 +1066,6 @@ export const TestTable = () => {
                     <td>{state.products[3].price}</td>
                 </tr>
             </table>
-            <Pagination />
         </div>
     )
 }

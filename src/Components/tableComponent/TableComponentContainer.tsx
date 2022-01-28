@@ -1,11 +1,11 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {TableComponent} from "./TableComponent";
 import {useDispatch, useSelector} from "react-redux";
 import {CardsPackDataType, getPackInfoTC} from "../../Redux/table-reducer";
 import {storeType} from "../../Redux/reduxStore";
 import {tableAPI} from "../../API/table-api";
 import PriceRange from "../SearchComponents/PriceRange";
-import { Pagination } from "@mui/material";
+import {Pagination} from "@mui/material";
 
 
 export const TableComponentContainer = () => {
@@ -39,10 +39,13 @@ export const TableComponentContainer = () => {
 
     const packInfo = useSelector<storeType, CardsPackDataType>(state => state.tableReducer.cardsPackData);
     const mydID = useSelector<storeType, number>(state => state.tableReducer.userID);
+    let min = useSelector<storeType, number>(state => state.tableReducer.cardsPackData.minCardsCount)
+    let max = useSelector<storeType, number>(state => state.tableReducer.cardsPackData.maxCardsCount)
     let page = packInfo.page
     let cardPacksTotalCount = packInfo.cardPacksTotalCount
     let pageSize = packInfo.pageCount
     let pagesCount = Math.ceil(cardPacksTotalCount / pageSize)
+
 
     const addNewPack = () => {
         tableAPI.addPack()
@@ -54,7 +57,7 @@ export const TableComponentContainer = () => {
             })
     }
     const onChangeCurrentPage = (page: number) => {
-         dispatch(getPackInfoTC(page))
+        dispatch(getPackInfoTC(page))
         console.log(page)
     }
 
@@ -67,6 +70,10 @@ export const TableComponentContainer = () => {
                 console.log(err)
             })
     }
+    const searchByName = (packName: string) => {
+            dispatch(getPackInfoTC(page, 10, min, max, "", packName));
+    }
+
 
     return (
         <>
@@ -77,6 +84,7 @@ export const TableComponentContainer = () => {
                 myID={mydID}
                 addNewPack={addNewPack}
                 deletePack={deletePack}
+                searchByName={searchByName}
             />
             <Pagination
                 count={pagesCount}     //The total number of pages.
