@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Range, getTrackBackground} from 'react-range';
 import {useDispatch, useSelector} from "react-redux";
 import { getPackInfoTC} from "../../Redux/table-reducer";
+import {storeType} from "../../Redux/reduxStore";
 
 interface IPriceRangeProps {
     // loading: boolean;
@@ -11,8 +12,10 @@ interface IPriceRangeProps {
 }
 
 const PriceRange: React.FC<IPriceRangeProps> = () => {
-    let minCardsCount = useSelector<any, number >(state => state.tableReducer.cardsPackData.minCardsCount)
-    let maxCardsCount = useSelector<any, number>(state => state.tableReducer.cardsPackData.maxCardsCount)
+    let minCardsCount = useSelector<storeType, number >(state => state.tableReducer.cardsPackData.minCardsCount)
+    let maxCardsCount = useSelector<storeType, number>(state => state.tableReducer.cardsPackData.maxCardsCount)
+    let pageCount = useSelector<storeType, number>(state => state.tableReducer.cardsPackData.pageCount)
+    let page = useSelector<storeType, number>(state => state.tableReducer.cardsPackData.page)
 
     const [values, setValues] = useState([minCardsCount, maxCardsCount]);
     // let [done, setDone] = useState(true);
@@ -23,7 +26,7 @@ const PriceRange: React.FC<IPriceRangeProps> = () => {
     useEffect(() => {
     //     if (done) {
     //         setDone(false);
-            dispatch(getPackInfoTC(1, 10, minCardsCount, maxCardsCount));
+            dispatch(getPackInfoTC(page, pageCount, minCardsCount, maxCardsCount));
     //     }
     //     setDone(true);
     }, []);
@@ -31,7 +34,7 @@ const PriceRange: React.FC<IPriceRangeProps> = () => {
 
     const searchPriceRange = (values:Array<number>) => {
         setValues(values);
-        dispatch(getPackInfoTC(1, 10, values[0], values[1]));
+        dispatch(getPackInfoTC(page, pageCount, values[0], values[1]));
         console.log(values)
     }
 

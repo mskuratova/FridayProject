@@ -1,11 +1,12 @@
-import React, {useEffect} from "react";
+import React, {ChangeEvent} from "react";
 import {TableComponent} from "./TableComponent";
 import {useDispatch, useSelector} from "react-redux";
-import {CardsPackDataType, getPackInfoTC, getUserIDAC} from "../../Redux/table-reducer";
+import {CardsPackDataType, getPackInfoTC} from "../../Redux/table-reducer";
 import {storeType} from "../../Redux/reduxStore";
-import {authAPI} from "../../API/auth-api";
 import {tableAPI} from "../../API/table-api";
 import PriceRange from "../SearchComponents/PriceRange";
+import { Pagination } from "@mui/material";
+
 
 export const TableComponentContainer = () => {
 
@@ -38,6 +39,10 @@ export const TableComponentContainer = () => {
 
     const packInfo = useSelector<storeType, CardsPackDataType>(state => state.tableReducer.cardsPackData);
     const mydID = useSelector<storeType, number>(state => state.tableReducer.userID);
+    let page = packInfo.page
+    let cardPacksTotalCount = packInfo.cardPacksTotalCount
+    let pageSize = packInfo.pageCount
+    let pagesCount = Math.ceil(cardPacksTotalCount / pageSize)
 
     const addNewPack = () => {
         tableAPI.addPack()
@@ -47,6 +52,10 @@ export const TableComponentContainer = () => {
             .catch(err => {
                 console.log(err)
             })
+    }
+    const onChangeCurrentPage = (page: number) => {
+         dispatch(getPackInfoTC(page))
+        console.log(page)
     }
 
     const deletePack = (id: string) => {
@@ -68,6 +77,15 @@ export const TableComponentContainer = () => {
                 myID={mydID}
                 addNewPack={addNewPack}
                 deletePack={deletePack}
+            />
+            <Pagination
+                count={pagesCount}     //The total number of pages.
+                variant="outlined"
+                page={page}  //The current page.
+                boundaryCount={1}   //Number of always visible pages at the beginning and end.
+                defaultPage={1}
+                onChange={(e: ChangeEvent<any>, p: number) => onChangeCurrentPage(p)} //event: The event source of the callback.
+                //page: The page selected.
             />
         </>
     )
