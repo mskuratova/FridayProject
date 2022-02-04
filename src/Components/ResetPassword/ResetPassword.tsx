@@ -42,7 +42,6 @@ export const ResetPassword = ({
                                         className={s.input}
                                         placeholder={'Email'}
                                         {...formik.getFieldProps('email')
-
                                         }
                                     />
 

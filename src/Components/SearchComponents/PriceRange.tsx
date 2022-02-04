@@ -5,10 +5,6 @@ import { getPackInfoTC} from "../../Redux/table-reducer";
 import {storeType} from "../../Redux/reduxStore";
 
 interface IPriceRangeProps {
-    // loading: boolean;
-    // error?: string;
-    // name?: string;
-    // priceRangeCallback: ( ) => void;
 }
 
 const PriceRange: React.FC<IPriceRangeProps> = React.memo(() => {
